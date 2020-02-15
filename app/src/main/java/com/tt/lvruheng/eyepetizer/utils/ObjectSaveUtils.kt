@@ -6,7 +6,7 @@ import java.io.*
 /**
  * Created by lvruheng on 2017/7/11.
  */
-object ObjectSaveUtils{
+object ObjectSaveUtils {
     fun saveObject(context: Context, name: String, value: Any) {
         var fos: FileOutputStream? = null
         var oos: ObjectOutputStream? = null
@@ -25,12 +25,13 @@ object ObjectSaveUtils{
             }
         }
     }
+
     fun getValue(context: Context, name: String): Any? {
         var fis: FileInputStream? = null
         var ois: ObjectInputStream? = null
         try {
             fis = context.openFileInput(name)
-            if(fis==null){
+            if (fis == null) {
                 return null
             }
             ois = ObjectInputStream(fis)
@@ -57,7 +58,8 @@ object ObjectSaveUtils{
         }
         return null
     }
-    fun deleteFile(name: String,context: Context){
+
+    fun deleteFile(name: String, context: Context) {
         context.deleteFile(name)
     }
 }

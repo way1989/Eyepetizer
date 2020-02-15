@@ -1,22 +1,14 @@
 package com.tt.lvruheng.eyepetizer.ui.fragment
 
-import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.util.Log
-import android.util.Log.println
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.tt.lvruheng.eyepetizer.R
 import com.tt.lvruheng.eyepetizer.adapter.HomeAdatper
 import com.tt.lvruheng.eyepetizer.mvp.contract.HomeContract
 import com.tt.lvruheng.eyepetizer.mvp.model.bean.HomeBean
 import com.tt.lvruheng.eyepetizer.mvp.model.bean.HomeBean.IssueListBean.ItemListBean
 import com.tt.lvruheng.eyepetizer.mvp.presenter.HomePresenter
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.home_fragment.*
 import java.util.*
 import java.util.regex.Pattern
@@ -56,14 +48,14 @@ class HomeFragment : BaseFragment(), HomeContract.View, SwipeRefreshLayout.OnRef
     }
 
     override fun initView() {
-        mPresenter = HomePresenter(context, this)
+        mPresenter = HomePresenter(context!!, this)
         mPresenter?.start()
         recyclerView.layoutManager = LinearLayoutManager(context)
-        mAdapter = HomeAdatper(context, mList)
+        mAdapter = HomeAdatper(context!!, mList)
         recyclerView.adapter = mAdapter
         refreshLayout.setOnRefreshListener(this)
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 var layoutManager: LinearLayoutManager = recyclerView?.layoutManager as LinearLayoutManager
                 var lastPositon = layoutManager.findLastVisibleItemPosition()

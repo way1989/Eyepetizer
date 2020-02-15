@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.net.Uri
 import android.os.Parcelable
-import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,14 +12,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import com.tt.lvruheng.eyepetizer.R
 import com.tt.lvruheng.eyepetizer.mvp.model.bean.VideoBean
 import com.tt.lvruheng.eyepetizer.ui.VideoDetailActivity
 import com.tt.lvruheng.eyepetizer.utils.ImageLoadUtils
 import com.tt.lvruheng.eyepetizer.utils.SPUtils
 import io.reactivex.disposables.Disposable
-import zlc.season.rxdownload2.entity.DownloadFlag
 import zlc.season.rxdownload2.RxDownload
+import zlc.season.rxdownload2.entity.DownloadFlag
 
 
 /**
@@ -41,19 +41,19 @@ class DownloadAdapter(context: Context, list: ArrayList<VideoBean>) : RecyclerVi
         this.inflater = LayoutInflater.from(context)
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): DownloadViewHolder {
-        return DownloadViewHolder(inflater?.inflate(R.layout.item_download, parent, false), context!!)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DownloadViewHolder {
+        return DownloadViewHolder(inflater!!.inflate(R.layout.item_download, parent, false), context!!)
     }
 
     override fun getItemCount(): Int {
         return list?.size ?: 0
     }
 
-    override fun onBindViewHolder(holder: DownloadViewHolder?, position: Int) {
+    override fun onBindViewHolder(holder: DownloadViewHolder, position: Int) {
         var photoUrl: String? = list?.get(position)?.feed
         photoUrl?.let { ImageLoadUtils.display(context!!, holder?.iv_photo, it) }
         var title: String? = list?.get(position)?.title
-        holder?.tv_title?.text = title
+        holder.tv_title?.text = title
         var category = list?.get(position)?.category
         var duration = list?.get(position)?.duration
         isDownload = SPUtils.getInstance(context!!, "download_state").getBoolean(list?.get(position)?.playUrl!!)
@@ -89,10 +89,10 @@ class DownloadAdapter(context: Context, list: ArrayList<VideoBean>) : RecyclerVi
             var videoBean = VideoBean(photoUrl, title, desc, duration, playUrl, category, blurred, collect, share, reply, time)
             var url = SPUtils.getInstance(context!!, "beans").getString(playUrl!!)
             intent.putExtra("data", videoBean as Parcelable)
-            if(hasLoaded){
+            if (hasLoaded) {
                 var files = RxDownload.getInstance(context).getRealFiles(playUrl)
                 var uri = Uri.fromFile(files!![0])
-                intent.putExtra("loaclFile",uri.toString())
+                intent.putExtra("loaclFile", uri.toString())
             }
 
             context?.let { context -> context.startActivity(intent) }
@@ -114,7 +114,7 @@ class DownloadAdapter(context: Context, list: ArrayList<VideoBean>) : RecyclerVi
                     var downloadStatus = event.downloadStatus
                     var percent = downloadStatus.percentNumber
                     if (percent == 100L) {
-                        if(!disposable.isDisposed&&disposable!= null){
+                        if (!disposable.isDisposed && disposable != null) {
                             disposable.dispose()
                         }
                         hasLoaded = true
@@ -146,11 +146,11 @@ class DownloadAdapter(context: Context, list: ArrayList<VideoBean>) : RecyclerVi
         })
     }
 
-    class DownloadViewHolder(itemView: View?, context: Context) : RecyclerView.ViewHolder(itemView) {
-        var iv_photo: ImageView = itemView?.findViewById(R.id.iv_photo) as ImageView
-        var tv_title: TextView = itemView?.findViewById(R.id.tv_title) as TextView
-        var tv_detail: TextView = itemView?.findViewById(R.id.tv_detail) as TextView
-        var iv_download_state: ImageView = itemView?.findViewById(R.id.iv_download_state) as ImageView
+    class DownloadViewHolder(itemView: View, context: Context) : RecyclerView.ViewHolder(itemView) {
+        var iv_photo: ImageView = itemView.findViewById(R.id.iv_photo) as ImageView
+        var tv_title: TextView = itemView.findViewById(R.id.tv_title) as TextView
+        var tv_detail: TextView = itemView.findViewById(R.id.tv_detail) as TextView
+        var iv_download_state: ImageView = itemView.findViewById(R.id.iv_download_state) as ImageView
 
         init {
             tv_title?.typeface = Typeface.createFromAsset(context?.assets, "fonts/FZLanTingHeiS-L-GB-Regular.TTF")

@@ -2,12 +2,10 @@ package com.tt.lvruheng.eyepetizer.search
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.view.animation.DecelerateInterpolator
-import android.view.ViewAnimationUtils
-import android.opengl.ETC1.getHeight
-import android.opengl.ETC1.getWidth
 import android.annotation.SuppressLint
 import android.view.View
+import android.view.ViewAnimationUtils
+import android.view.animation.DecelerateInterpolator
 
 
 /**

@@ -4,10 +4,10 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.os.Handler
 import android.os.Message
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.view.View
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gyf.barlibrary.ImmersionBar
 import com.tt.lvruheng.eyepetizer.R
 import com.tt.lvruheng.eyepetizer.adapter.DownloadAdapter
@@ -62,12 +62,10 @@ class CacheActivity : AppCompatActivity() {
         var builder = AlertDialog.Builder(this)
         var dialog = builder.create()
         builder.setMessage("是否删除当前视频")
-        builder.setNegativeButton("否", {
-            dialog, which ->
+        builder.setNegativeButton("否", { dialog, which ->
             dialog.dismiss()
         })
-        builder.setPositiveButton("是", {
-            dialog, which ->
+        builder.setPositiveButton("是", { dialog, which ->
             deleteDownload(position)
         })
         builder.show()

@@ -1,7 +1,7 @@
 package com.tt.lvruheng.eyepetizer.ui.fragment
 
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.tt.lvruheng.eyepetizer.R
 import com.tt.lvruheng.eyepetizer.adapter.RankAdapter
 import com.tt.lvruheng.eyepetizer.mvp.contract.HotContract
@@ -23,11 +23,11 @@ class RankFragment : BaseFragment(), HotContract.View {
 
     override fun initView() {
         recyclerView.layoutManager = LinearLayoutManager(context)
-        mAdapter = RankAdapter(context, mList)
+        mAdapter = RankAdapter(context!!, mList)
         recyclerView.adapter = mAdapter
         if (arguments != null) {
-            mStrategy = arguments.getString("strategy")
-            mPresenter = HotPresenter(context, this)
+            mStrategy = arguments!!.getString("strategy")
+            mPresenter = HotPresenter(context!!, this)
             mPresenter.requestData(mStrategy)
         }
 
@@ -35,7 +35,7 @@ class RankFragment : BaseFragment(), HotContract.View {
 
     override fun setData(bean: HotBean) {
         Log.e("rank", bean.toString())
-        if(mList.size>0){
+        if (mList.size > 0) {
             mList.clear()
         }
         bean.itemList?.forEach {

@@ -3,28 +3,27 @@ package com.tt.lvruheng.eyepetizer.ui
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
-import android.graphics.Typeface
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.tt.lvruheng.eyepetizer.R
-import com.tt.lvruheng.eyepetizer.mvp.model.bean.VideoBean
-import kotlinx.android.synthetic.main.activity_video_detail.*
 import android.graphics.BitmapFactory
-import com.bumptech.glide.Glide
+import android.graphics.Typeface
 import android.os.AsyncTask
+import android.os.Bundle
 import android.os.Handler
 import android.os.Message
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.shuyu.gsyvideoplayer.GSYVideoPlayer
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
+import com.tt.lvruheng.eyepetizer.R
+import com.tt.lvruheng.eyepetizer.mvp.model.bean.VideoBean
 import com.tt.lvruheng.eyepetizer.utils.*
+import kotlinx.android.synthetic.main.activity_video_detail.*
 import zlc.season.rxdownload2.RxDownload
 import java.io.FileInputStream
 import java.io.FileNotFoundException
-import java.net.URI
 import java.util.concurrent.ExecutionException
 
 
@@ -101,7 +100,7 @@ class VideoDetailActivity : AppCompatActivity() {
                 }
                 SPUtils.getInstance(this, "downloads").put("count", count)
                 ObjectSaveUtils.saveObject(this, "download$count", bean)
-                addMission(bean.playUrl,count)
+                addMission(bean.playUrl, count)
             } else {
                 showToast("该视频已经缓存过了")
             }
@@ -109,9 +108,9 @@ class VideoDetailActivity : AppCompatActivity() {
     }
 
     private fun addMission(playUrl: String?, count: Int) {
-        RxDownload.getInstance(this).serviceDownload(playUrl,"download$count").subscribe({
+        RxDownload.getInstance(this).serviceDownload(playUrl, "download$count").subscribe({
             showToast("开始下载")
-            SPUtils.getInstance(this, "downloads").put(bean.playUrl.toString(),bean.playUrl.toString())
+            SPUtils.getInstance(this, "downloads").put(bean.playUrl.toString(), bean.playUrl.toString())
             SPUtils.getInstance(this, "download_state").put(playUrl.toString(), true)
         }, {
             showToast("添加任务失败")
@@ -120,10 +119,10 @@ class VideoDetailActivity : AppCompatActivity() {
 
     private fun prepareVideo() {
         var uri = intent.getStringExtra("loaclFile")
-        if(uri!=null){
-            Log.e("uri",uri)
+        if (uri != null) {
+            Log.e("uri", uri)
             gsy_player.setUp(uri, false, null, null)
-        }else{
+        } else {
             gsy_player.setUp(bean.playUrl, false, null, null)
         }
         //增加封面
@@ -241,10 +240,10 @@ class VideoDetailActivity : AppCompatActivity() {
         }
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration?) {
+    override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         if (isPlay && !isPause) {
-            if (newConfig?.orientation == ActivityInfo.SCREEN_ORIENTATION_USER) {
+            if (newConfig.orientation == ActivityInfo.SCREEN_ORIENTATION_USER) {
                 if (!gsy_player.isIfCurrentIsFullscreen) {
                     gsy_player.startWindowFullscreen(mContext, true, true)
                 }

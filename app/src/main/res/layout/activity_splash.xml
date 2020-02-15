@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/landing_background">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/landing_background">
+
     <ImageView
         android:id="@+id/iv_icon_splash"
         android:layout_width="61dp"
         android:layout_height="42dp"
         android:layout_centerInParent="true"
-        android:background="@drawable/ic_action_focus_white_no_margin"/>
+        android:background="@drawable/ic_action_focus_white_no_margin" />
+
     <TextView
         android:id="@+id/tv_name_english"
         android:layout_marginTop="20dp"
@@ -19,7 +20,7 @@
         android:layout_centerInParent="true"
         android:layout_below="@id/iv_icon_splash"
         android:textSize="25sp"
-        android:text="Eyepetizer"/>
+        android:text="Eyepetizer" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -29,7 +30,8 @@
         android:layout_below="@id/tv_name_english"
         android:layout_centerInParent="true"
         android:textSize="18sp"
-        android:text="开  眼"/>
+        android:text="开  眼" />
+
     <TextView
         android:id="@+id/tv_english_intro"
         android:layout_width="wrap_content"
@@ -39,6 +41,7 @@
         android:layout_marginBottom="16dp"
         android:text="Daily appetizers for your eyes，Bon eyepetit"
         android:layout_above="@+id/tv_intro" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

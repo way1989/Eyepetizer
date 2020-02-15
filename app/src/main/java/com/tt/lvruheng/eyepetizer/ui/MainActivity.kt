@@ -1,14 +1,12 @@
 package com.tt.lvruheng.eyepetizer.ui
 
 import android.graphics.Typeface
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.gyf.barlibrary.ImmersionBar
 import com.tt.lvruheng.eyepetizer.R
 import com.tt.lvruheng.eyepetizer.search.SEARCH_TAG
@@ -20,15 +18,13 @@ import com.tt.lvruheng.eyepetizer.ui.fragment.MineFragment
 import com.tt.lvruheng.eyepetizer.utils.showToast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
-import android.view.WindowManager
-
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-    var homeFragment: HomeFragment? = null
-    var findFragment: FindFragment? = null
-    var hotFragemnt: HotFragment? = null
-    var mineFragment: MineFragment? = null
+    lateinit var homeFragment: HomeFragment
+    lateinit var findFragment: FindFragment
+    lateinit var hotFragemnt: HotFragment
+    lateinit var mineFragment: MineFragment
     var mExitTime: Long = 0
     var toast: Toast? = null
     lateinit var searchFragment: SearchFragment
@@ -97,16 +93,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             mineFragment = MineFragment()
             hotFragemnt = HotFragment()
             val fragmentTrans = supportFragmentManager.beginTransaction()
-            fragmentTrans.add(R.id.fl_content, homeFragment)
-            fragmentTrans.add(R.id.fl_content, findFragment)
-            fragmentTrans.add(R.id.fl_content, mineFragment)
-            fragmentTrans.add(R.id.fl_content, hotFragemnt)
+            fragmentTrans.add(R.id.fl_content, homeFragment!!)
+            fragmentTrans.add(R.id.fl_content, findFragment!!)
+            fragmentTrans.add(R.id.fl_content, mineFragment!!)
+            fragmentTrans.add(R.id.fl_content, hotFragemnt!!)
             fragmentTrans.commit()
         }
-        supportFragmentManager.beginTransaction().show(homeFragment)
-                .hide(findFragment)
-                .hide(mineFragment)
-                .hide(hotFragemnt)
+        supportFragmentManager.beginTransaction().show(homeFragment!!)
+                .hide(findFragment!!)
+                .hide(mineFragment!!)
+                .hide(hotFragemnt!!)
                 .commit()
     }
 

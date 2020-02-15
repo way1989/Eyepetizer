@@ -1,9 +1,7 @@
 package com.tt.lvruheng.eyepetizer.mvp.model
 
 import android.content.Context
-import com.tt.lvruheng.eyepetizer.mvp.contract.FindContract
 import com.tt.lvruheng.eyepetizer.mvp.model.bean.FindBean
-import com.tt.lvruheng.eyepetizer.mvp.model.bean.HomeBean
 import com.tt.lvruheng.eyepetizer.network.ApiService
 import com.tt.lvruheng.eyepetizer.network.RetrofitClient
 import io.reactivex.Observable

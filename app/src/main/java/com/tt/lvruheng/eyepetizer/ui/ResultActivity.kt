@@ -1,11 +1,10 @@
 package com.tt.lvruheng.eyepetizer.ui
 
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.gyf.barlibrary.ImmersionBar
 import com.tt.lvruheng.eyepetizer.R
 import com.tt.lvruheng.eyepetizer.adapter.FeedAdapter
@@ -13,7 +12,6 @@ import com.tt.lvruheng.eyepetizer.mvp.contract.ResultContract
 import com.tt.lvruheng.eyepetizer.mvp.model.bean.HotBean
 import com.tt.lvruheng.eyepetizer.mvp.presenter.ResultPresenter
 import kotlinx.android.synthetic.main.activity_find_detail.*
-import kotlin.collections.ArrayList
 
 /**
  * Created by lvruheng on 2017/7/11.
@@ -38,7 +36,7 @@ class ResultActivity : AppCompatActivity(), ResultContract.View, SwipeRefreshLay
         recyclerView.adapter = mAdapter
         refreshLayout.setOnRefreshListener(this)
         recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 var layoutManager: LinearLayoutManager = recyclerView?.layoutManager as LinearLayoutManager
                 var lastPositon = layoutManager.findLastVisibleItemPosition()

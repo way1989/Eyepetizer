@@ -10,8 +10,8 @@ import com.tt.lvruheng.eyepetizer.R
 /**
  * Created by lvruheng on 2017/7/6.
  */
-class ImageLoadUtils{
-    companion object{
+class ImageLoadUtils {
+    companion object {
         fun display(context: Context, imageView: ImageView?, url: String) {
             if (imageView == null) {
                 throw IllegalArgumentException("argument error")
@@ -21,14 +21,14 @@ class ImageLoadUtils{
                     .centerCrop()
                     .placeholder(R.drawable.ic_image_loading)
                     .error(R.drawable.ic_empty_picture)
-                    .crossFade().into(imageView)
+                    .into(imageView)
         }
-        fun displayHigh(context: Context, imageView: ImageView?, url: String){
+
+        fun displayHigh(context: Context, imageView: ImageView?, url: String) {
             if (imageView == null) {
                 throw IllegalArgumentException("argument error")
             }
             Glide.with(context).load(url)
-                    .asBitmap()
                     .format(DecodeFormat.PREFER_ARGB_8888)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .centerCrop()

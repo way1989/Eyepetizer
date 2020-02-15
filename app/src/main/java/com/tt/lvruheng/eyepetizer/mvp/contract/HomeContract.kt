@@ -7,10 +7,11 @@ import com.tt.lvruheng.eyepetizer.mvp.model.bean.HomeBean
 /**
  * Created by lvruheng on 2017/7/5.
  */
-interface HomeContract{
+interface HomeContract {
     interface View : BaseView<Presenter> {
-        fun setData(bean : HomeBean)
+        fun setData(bean: HomeBean)
     }
+
     interface Presenter : BasePresenter {
         fun requestData()
     }

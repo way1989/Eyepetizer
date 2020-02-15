@@ -12,19 +12,19 @@ import kotlinx.android.synthetic.main.mine_fragment.*
 /**
  * Created by lvruheng on 2017/7/4.
  */
-class MineFragment : BaseFragment(),View.OnClickListener{
+class MineFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.tv_watch ->{
-                var intent = Intent(activity,WatchActivity::class.java)
+        when (v?.id) {
+            R.id.tv_watch -> {
+                var intent = Intent(activity, WatchActivity::class.java)
                 startActivity(intent)
             }
-            R.id.tv_advise ->{
-                var intent = Intent(activity,AdviseActivity::class.java)
+            R.id.tv_advise -> {
+                var intent = Intent(activity, AdviseActivity::class.java)
                 startActivity(intent)
             }
-            R.id.tv_save ->{
-                var intent = Intent(activity,CacheActivity::class.java)
+            R.id.tv_save -> {
+                var intent = Intent(activity, CacheActivity::class.java)
                 startActivity(intent)
             }
         }
